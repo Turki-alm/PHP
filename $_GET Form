@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Php Learn</title>
+</head>
+<body>
+
+<?php
+
+$n = ['Turki' , 'Hamad' , 'Ahmed'];
+
+foreach ($n as $key => $name){
+    echo "<div>hello $name</div>";
+}
+
+function userx($address = 1 , $age = 2)
+{
+ return $address + $age ;
+}
+
+echo userx();
+
+
+# $_GET
+if(count($_GET)){
+    foreach ($_GET as $key => $values){
+        echo "<div>$key : $values ";
+    }
+}
+?>
+<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
+
+    <input TYPE="text" name="name" placeholder="Name">
+    <input TYPE="text" name="Age" placeholder="Age">
+    <input TYPE="text" name="address" placeholder="Address">
+
+     <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
