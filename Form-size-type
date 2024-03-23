@@ -1,0 +1,73 @@
+<?php
+$title = "Contact us";
+require_once 'template/header.php';
+
+# Vaildation Form
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    // Check contact for the function
+  #  echo "<pre>"; print_r($_POST); print_r($_FILES); echo"</pre>";
+
+    // if the file is uploading with not any errors do
+
+if(isset($_FILES['document']) && $_FILES['document']['error'] == 0){
+
+    // array contain the allowed lists
+    $allowed = [
+            'jpg' => 'image/jpg',
+            'jpeg' => 'image/jpeg',
+            'png' =>  'imsge/png',
+            'gif' => 'image/gif'
+    ];
+
+    // size allowed
+    $maxFilSize = 1 * 1024;
+
+    // size type allowed from tmp is better
+    $fileMimeType = mime_content_type($_FILES['document']['tmp_name']);
+    $fileSize = $_FILES['document']['size'];
+
+    if(!in_array($fileMimeType , $allowed)) die('Files type not allowed');
+
+    if($fileSize > $maxFilSize) die('file size is high , allowed size is : ' .$maxFilSize);
+}
+
+}
+
+
+
+?>
+
+<h1>Hello to Contact Us :)</h1>
+
+<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" name="name" class="form-control">
+
+    </div>
+<br />
+    <div class="form-group">
+        <label for="name">Your email</label>
+        <input type="email" name="email" class="form-control">
+
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="document">Your document</label>
+        <input type="file" name="document" class="form-control">
+
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="area">Your message</label>
+        <textarea name="message" class="form-control"></textarea>
+
+    </div>
+    <br />
+    <button class="btn btn-primary">Send</button>
+</form>
+<br />
+
+<?php require_once 'template/footer.php' ?>
