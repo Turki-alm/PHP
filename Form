@@ -4,7 +4,34 @@ require_once 'template/header.php';
 
 # Vaildation Form
 
+// for string
+function filterString($field){
+
+    $field = filter_var(trim($field),  FILTER_SANITIZE_STRING);
+}
+
+
+// for email
+function filterEmail($field){
+
+    $field = filter_var(trim($field),  FILTER_SANITIZE_EMAIL);
+
+    if(filter_var($field,FILTER_VALIDATE_EMAIL)){
+        return $field;
+    }else{
+        return false;
+    }
+
+}
+
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    // vlidate email address
+
+    if(!filterEmail($_POST['email'])){
+        die('your email is incorrect');
+    }
 
     // Check contact for the function
   #  echo "<pre>"; print_r($_POST); print_r($_FILES); echo"</pre>";
