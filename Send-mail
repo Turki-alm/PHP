@@ -1,5 +1,0 @@
-<?php 
-$adminmail = "t@example.com";
-mail($adminemail , 'subject' , 'this is message' );
-
-?>
