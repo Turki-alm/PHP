@@ -1,2 +1,0 @@
-setcookie('username', 'value' , 'expier time');
-session_start();
